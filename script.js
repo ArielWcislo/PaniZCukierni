@@ -5,7 +5,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
 (function () {
   const toggle = document.querySelector('[data-theme-toggle]');
   const root = document.documentElement;
-  let theme = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+//   let theme = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  let theme = 'light';
   root.setAttribute('data-theme', theme);
 
   function updateIcon() {
@@ -56,10 +57,10 @@ const swiper = new Swiper('#gallerySwiper', {
     disabledClass: 'swiper-button-disabled',
   },
   breakpoints: {
-    480:  { slidesPerView: 1.5, spaceBetween: 12 },
-    768:  { slidesPerView: 2.5, spaceBetween: 16 },
-    1024: { slidesPerView: 3,   spaceBetween: 16 },
-    1440: { slidesPerView: 3.5, spaceBetween: 20 },
+    480:  { slidesPerView: 1, spaceBetween: 12 },
+    768:  { slidesPerView: 2, spaceBetween: 16 },
+    1024: { slidesPerView: 2.5,   spaceBetween: 16 },
+    1440: { slidesPerView: 3, spaceBetween: 20 },
   },
 });
 
