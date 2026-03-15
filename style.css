@@ -143,10 +143,11 @@ a { color: inherit; text-decoration: none; }
 }
 .logo-wrap:hover { opacity: .75; }
 .logo-name {
-  font-family: var(--font-display);
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: var(--text-lg);
-  font-weight: 500;
-  letter-spacing: .02em;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
 }
 .nav-right { display: flex; align-items: center; gap: var(--space-6); }
 .nav-links { display: flex; gap: var(--space-6); list-style: none; }
