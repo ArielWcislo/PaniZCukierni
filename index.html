@@ -22,11 +22,7 @@
   <!-- NAV -->
   <nav class="site-nav" role="navigation" aria-label="Nawigacja główna">
     <a href="#galeria" class="logo-wrap" aria-label="Strona główna">
-      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
-        <circle cx="15" cy="15" r="14" stroke="currentColor" stroke-width="1"/>
-        <path d="M9 21 L9 9 L15 17 L21 9 L21 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <!-- ZMIEŃ: imię i nazwisko -->
+      <img src="./assets/logo.png" alt="Pani z Cukierni" width="120" height="12 0" style="object-fit:contain;">
       <span class="logo-name">Pani z Cukierni</span>
     </a>
     <div class="nav-right">
@@ -44,71 +40,15 @@
     </div>
   </nav>
 
-  <!-- GALERIA -->
+   <!-- GALERIA -->
   <section id="galeria">
     <div class="gallery-header fade-in">
-      <p class="section-label">Portfolio</p>
-      <h1 class="section-title">Oferta</h1>
+      <h1 class="section-title">Galeria</h1>
       <hr class="section-divider" aria-hidden="true">
     </div>
     <div class="gallery-swiper-wrap" role="region" aria-label="Galeria zdjęć">
       <div class="swiper gallery-swiper" id="gallerySwiper">
         <div class="swiper-wrapper">
-          <!--
-            ZMIEŃ dla każdego slajdu:
-              data-full="./assets/zdj1.jpg"  — pełne zdjęcie do lightboxa
-              src="./assets/zdj1.jpg"        — miniatura w sliderze
-              alt="..."                       — opis zdjęcia
-              .slide-caption                  — podpis przy hoverze
-          -->
-          <div class="swiper-slide" data-full="./assets/01.jpg">
-            <img src="./assets/01.jpg" alt="Opis zdjęcia 1" width="1080" height="1920" loading="eager"/>
-            <div class="slide-overlay"><span class="slide-caption">Opis zdjęcia 1</span></div>
-          </div>
-          <div class="swiper-slide" data-full="./assets/02.jpg">
-            <img src="./assets/02.jpg" alt="Opis zdjęcia 2" width="1080" height="1920" loading="lazy"/>
-            <div class="slide-overlay"><span class="slide-caption">Opis zdjęcia 2</span></div>
-          </div>
-          <div class="swiper-slide" data-full="./assets/03.jpg">
-            <img src="./assets/03.jpg" alt="Opis zdjęcia 3" width="1080" height="1920" loading="lazy"/>
-            <div class="slide-overlay"><span class="slide-caption">Opis zdjęcia 3</span></div>
-          </div>
-          <div class="swiper-slide" data-full="./assets/04.jpg">
-            <img src="./assets/04.jpg" alt="Opis zdjęcia 4" width="1080" height="1920" loading="lazy"/>
-            <div class="slide-overlay"><span class="slide-caption">Opis zdjęcia 4</span></div>
-          </div>
-          <div class="swiper-slide" data-full="./assets/05.jpg">
-            <img src="./assets/05.jpg" alt="Opis zdjęcia 5" width="1080" height="1920" loading="lazy"/>
-            <div class="slide-overlay"><span class="slide-caption">Opis zdjęcia 5</span></div>
-          </div>
-          <div class="swiper-slide" data-full="./assets/06.jpg">
-            <img src="./assets/06.jpg" alt="Opis zdjęcia 6" width="1080" height="1920" loading="lazy"/>
-            <div class="slide-overlay"><span class="slide-caption">Opis zdjęcia 6</span></div>
-          </div>
-          <div class="swiper-slide" data-full="./assets/07.jpg">
-            <img src="./assets/07.jpg" alt="Opis zdjęcia 6" width="1080" height="1920" loading="lazy"/>
-            <div class="slide-overlay"><span class="slide-caption">Opis zdjęcia 6</span></div>
-          </div>
-          <div class="swiper-slide" data-full="./assets/08.jpg">
-            <img src="./assets/08.jpg" alt="Opis zdjęcia 6" width="1080" height="1920" loading="lazy"/>
-            <div class="slide-overlay"><span class="slide-caption">Opis zdjęcia 6</span></div>
-          </div>
-          <div class="swiper-slide" data-full="./assets/09.jpg">
-            <img src="./assets/09.jpg" alt="Opis zdjęcia 6" width="1080" height="1920" loading="lazy"/>
-            <div class="slide-overlay"><span class="slide-caption">Opis zdjęcia 6</span></div>
-          </div>
-          <div class="swiper-slide" data-full="./assets/10.jpg">
-            <img src="./assets/10.jpg" alt="Opis zdjęcia 6" width="1080" height="1920" loading="lazy"/>
-            <div class="slide-overlay"><span class="slide-caption">Opis zdjęcia 6</span></div>
-          </div>
-          <div class="swiper-slide" data-full="./assets/11.jpg">
-            <img src="./assets/11.jpg" alt="Opis zdjęcia 6" width="1080" height="1920" loading="lazy"/>
-            <div class="slide-overlay"><span class="slide-caption">Opis zdjęcia 6</span></div>
-          </div>
-          <div class="swiper-slide" data-full="./assets/12.jpg">
-            <img src="./assets/12.jpg" alt="Opis zdjęcia 6" width="1080" height="1920" loading="lazy"/>
-            <div class="slide-overlay"><span class="slide-caption">Opis zdjęcia 6</span></div>
-          </div>
         </div>
       </div>
       <button class="swiper-btn prev" id="gallery-prev" aria-label="Poprzednie zdjęcia">
@@ -118,13 +58,22 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
     </div>
+
+    <!-- PRZYCISK ZAMÓWIENIA -->
+    <div class="order-cta fade-in">
+      <!-- ZMIEŃ: href na link do swojego Google Forms -->
+      <a href="https://forms.google.com/TWOJ_FORMULARZ" class="order-btn" target="_blank" rel="noopener noreferrer">
+        Formularz zamówienia
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
   </section>
 
   <!-- O MNIE -->
   <section id="o-mnie">
     <div class="about-inner">
       <div class="fade-in">
-        <p class="section-label">O mnie</p>
         <h2 class="section-title">Kim jestem</h2>
         <hr class="section-divider" aria-hidden="true">
       </div>
@@ -146,7 +95,6 @@
   <section id="kontakt">
     <div class="kontakt-inner">
       <div class="fade-in">
-        <p class="section-label">Znajdź mnie</p>
         <h2 class="section-title">Kontakt</h2>
         <hr class="section-divider" aria-hidden="true">
       </div>
@@ -194,6 +142,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="galeria.js"></script>
   <script src="script.js" defer></script>
 </body>
 </html>

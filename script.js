@@ -43,6 +43,29 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
+// ── BUDUJ GALERIĘ Z galeria.js ──
+function buildGallery() {
+  const wrapper = document.querySelector('#gallerySwiper .swiper-wrapper');
+  if (!wrapper || typeof GALERIA === 'undefined') return;
+
+  wrapper.innerHTML = GALERIA.map(({ src, caption }, i) => `
+    <div class="swiper-slide" data-full="${src}">
+      <img
+        src="${src}"
+        alt="${caption}"
+        width="600"
+        height="800"
+        loading="${i < 3 ? 'eager' : 'lazy'}"
+      />
+      <div class="slide-overlay">
+        <span class="slide-caption">${caption}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+buildGallery();
+
 // ── SWIPER ──
 const swiper = new Swiper('#gallerySwiper', {
   slidesPerView: 1.2,
