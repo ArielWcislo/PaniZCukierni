@@ -1,5 +1,6 @@
 /* ── ZMIENNE I TRYBY ── */
 :root, [data-theme="light"] {
+  color-scheme: only light;
   --color-bg: #f5f0e8;
   --color-surface: #faf6ee;
   --color-surface-2: #fdfaf4;
@@ -41,24 +42,6 @@
   --space-12: 3rem;
   --space-16: 4rem;
   --space-24: 6rem;
-}
-
-[data-theme="dark"] {
-  --color-bg: #1a1008;
-  --color-surface: #221608;
-  --color-surface-2: #2a1c0e;
-  --color-surface-offset: #1e1209;
-  --color-divider: #3a2a1a;
-  --color-text: #f0e8d8;
-  --color-text-muted: #a8917a;
-  --color-text-faint: #6b5444;
-  --color-text-inverse: #2c1a0e;
-  --color-primary: #e8c99a;
-  --color-primary-hover: #d4b07a;
-  --color-primary-highlight: #3a2a1a;
-  --shadow-sm: 0 1px 2px oklch(0 0 0 / .3);
-  --shadow-md: 0 4px 12px oklch(0 0 0 / .4);
-  --shadow-lg: 0 12px 36px oklch(0 0 0 / .5);
 }
 
 /* ── RESET ── */
@@ -278,7 +261,7 @@ a { color: inherit; text-decoration: none; }
 
 .gallery-swiper .swiper-slide img {
   width: 100%;
-  aspect-ratio: 9 / 16;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
   display: block;
   transition: transform .6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -514,4 +497,21 @@ footer p { font-size: var(--text-xs); color: var(--color-text-faint); letter-spa
 
 .is-hidden {
   display: none !important;
+}
+
+.order-note {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--color-text);
+  color: var(--color-text-inverse);
+  padding: var(--space-4) var(--space-10);
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: .02em;
+  box-shadow: var(--shadow-md);
+  cursor: default;
 }
