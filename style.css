@@ -538,24 +538,6 @@ a {
   color: var(--color-text);
 }
 
-.contact-email {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-top: var(--space-8);
-  padding-bottom: var(--space-1);
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  border-bottom: 1px solid oklch(from var(--color-text) l c h / .15);
-  transition: color var(--transition-interactive), border-color var(--transition-interactive);
-}
-
-.contact-email:hover {
-  color: var(--color-text);
-  border-color: var(--color-text);
-}
-
-
 /* ── STOPKA ── */
 footer {
   padding: var(--space-8);
@@ -626,23 +608,38 @@ footer p {
 @media (max-width: 640px) {
   .site-nav {
     padding: var(--space-4);
+    overflow: visible;
+  }
+
+  .nav-right {
+    position: relative;
+    gap: var(--space-4);
   }
 
   .hamburger {
     display: flex;
+    position: relative;
+    z-index: 102;
   }
 
   .nav-links {
     display: none;
-    position: fixed;
-    inset: 0;
-    top: 60px;
-    z-index: 99;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: auto;
+    width: min(280px, calc(100vw - 2 * var(--space-4)));
+    margin: 0;
+    padding: var(--space-3);
+    z-index: 101;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-8);
-    background: var(--color-bg);
+    align-items: stretch;
+    gap: var(--space-3);
+    list-style: none;
+    background: var(--color-surface);
+    border: 1px solid oklch(from var(--color-text) l c h / .08);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
   }
 
   .nav-links.open {
@@ -650,8 +647,24 @@ footer p {
   }
 
   .nav-links a {
-    font-size: var(--text-xl);
+    display: block;
+    width: 100%;
+    padding: var(--space-4) var(--space-6);
+    background: var(--color-surface-2);
+    border: 1px solid oklch(from var(--color-text) l c h / .08);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    font-size: var(--text-lg);
     color: var(--color-text);
+    text-align: center;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
+    background: var(--color-surface-offset);
+    border-color: oklch(from var(--color-text) l c h / .16);
   }
 
   .gallery-header,
@@ -663,4 +676,23 @@ footer p {
   .swiper-btn {
     display: none;
   }
+}
+
+.order-cta {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-12) var(--space-8) var(--space-4);
+}
+
+.order-info {
+  max-width: 34ch;
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-surface-2);
+  border: 1px solid oklch(from var(--color-text) l c h / .10);
+  border-radius: var(--radius-xl);
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
 }
