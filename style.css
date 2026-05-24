@@ -439,6 +439,8 @@ a {
   font-size: var(--text-base);
   line-height: 1.8;
   color: var(--color-text-muted);
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .about-text p + p {
