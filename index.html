@@ -7,7 +7,7 @@
   <meta name="description" content="Domowe wypieki na zamówienie — cookies, serniki, cynamonki i więcej." />
   <meta property="og:title" content="Pani z Cukierni" />
   <meta property="og:description" content="Domowe wypieki na zamówienie — cookies, serniki, cynamonki i więcej." />
-  <meta property="og:image" content="./assets/hero_bg.jpg" " />
+  <meta property="og:image" content="./assets/hero_bg.jpg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,40 +49,133 @@
     <!-- GALERIA -->
     <section id="galeria">
       <div class="gallery-header fade-in">
-        <h1 class="section-title">Oferta</h1>
+        <h2 class="section-title">Oferta</h2>
         <hr class="section-divider" aria-hidden="true" />
-      </div>
 
-      <div class="gallery-swiper-wrap" role="region" aria-label="Galeria zdjęć">
-        <div class="swiper gallery-swiper" id="gallerySwiper">
-          <div class="swiper-wrapper"></div>
+        <div class="gallery-tabs" role="tablist" aria-label="Rodzaj oferty">
+          <button
+            id="tab-podstawowa"
+            class="gallery-tab is-active"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-podstawowa"
+            tabindex="0"
+          >
+            Podstawowa
+          </button>
+
+          <button
+            id="tab-monodesery"
+            class="gallery-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-monodesery"
+            tabindex="-1"
+          >
+            Monodesery
+          </button>
         </div>
-
-        <button class="swiper-btn prev" id="gallery-prev" aria-label="Poprzednie zdjęcia">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M19 12H5M12 19l-7-7 7-7" />
-          </svg>
-        </button>
-
-        <button class="swiper-btn next" id="gallery-next" aria-label="Następne zdjęcia">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </button>
       </div>
 
+      <div
+        id="panel-podstawowa"
+        class="gallery-panel"
+        role="tabpanel"
+        aria-labelledby="tab-podstawowa"
+      >
+        <div class="gallery-swiper-wrap">
+          <button
+            id="gallery-basic-prev"
+            class="swiper-btn prev"
+            type="button"
+            aria-label="Poprzednie zdjęcie"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          <div id="gallerySwiperBasic" class="swiper gallery-swiper">
+            <div class="swiper-wrapper"></div>
+          </div>
+
+          <button
+            id="gallery-basic-next"
+            class="swiper-btn next"
+            type="button"
+            aria-label="Następne zdjęcie"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="panel-monodesery"
+        class="gallery-panel"
+        role="tabpanel"
+        aria-labelledby="tab-monodesery"
+        hidden
+      >
+        <div class="gallery-swiper-wrap">
+          <button
+            id="gallery-mono-prev"
+            class="swiper-btn prev"
+            type="button"
+            aria-label="Poprzednie zdjęcie"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          <div id="gallerySwiperMono" class="swiper gallery-swiper">
+            <div class="swiper-wrapper"></div>
+          </div>
+
+          <button
+            id="gallery-mono-next"
+            class="swiper-btn next"
+            type="button"
+            aria-label="Następne zdjęcie"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      </div>
       <div class="order-cta fade-in">
-        <p class="order-info">
-          Zamówienia przyjmuję przez Instagram i Facebook.
-        </p>
+      <div class="order-info">
+        Zamówienia przyjmuję przez
+        <a
+          href="https://instagram.com/panizcukierni"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram
+        </a>
+        i
+        <a
+          href="https://facebook.com/p/Pani-z-cukierni-61576046405911/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Facebook
+        </a>.
       </div>
+</div>
     </section>
 
     <!-- O MNIE -->
     <section id="o-mnie">
       <div class="about-inner">
         <div class="fade-in">
-          <h2 class="section-title">Kim jestem</h2>
+          <h2 class="section-title">O mnie</h2>
           <hr class="section-divider" aria-hidden="true" />
         </div>
 
@@ -107,7 +200,7 @@
       </div>
     </section>
 
-    <!-- KONTAKT -->
+  <!-- KONTAKT -->
   <section id="kontakt">
     <div class="kontakt-inner">
       <div class="fade-in">
@@ -159,7 +252,7 @@
             </a>
 
             <a
-              href="mailto:zamowienia@panizcukierni.pl"
+              href="mailto:panizcukierni@gmail.com"
               class="link-card"
               role="listitem"
               aria-label="E-mail"
@@ -172,7 +265,7 @@
               </div>
               <div class="link-card-text">
                 <div class="link-card-label">E-mail</div>
-                <div class="link-card-sub">zamowienia@panizcukierni.pl</div>
+                <div class="link-card-sub">panizcukierni@gmail.com</div>
               </div>
               <svg class="link-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M5 12h14M12 5l7 7-7 7" />

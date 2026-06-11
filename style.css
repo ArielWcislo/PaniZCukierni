@@ -326,6 +326,49 @@ a {
   margin-bottom: var(--space-8);
 }
 
+.gallery-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  padding: var(--space-1);
+  background: var(--color-surface);
+  border: 1px solid oklch(from var(--color-text) l c h / .08);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery-tab {
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition:
+    background var(--transition-interactive),
+    color var(--transition-interactive),
+    box-shadow var(--transition-interactive);
+}
+
+.gallery-tab:hover {
+  color: var(--color-text);
+}
+
+.gallery-tab[aria-selected="true"] {
+  background: var(--color-text);
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery-panel {
+  margin-top: var(--space-8);
+}
+
+.gallery-panel[hidden] {
+  display: none;
+}
+
 .gallery-swiper-wrap {
   position: relative;
   width: 100%;
@@ -467,6 +510,21 @@ a {
   line-height: 1.7;
   text-align: center;
   box-shadow: var(--shadow-sm);
+}
+
+
+.order-info a {
+  color: var(--color-text);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+  text-decoration-thickness: 1px;
+  transition: color var(--transition-interactive);
+}
+
+.order-info a:hover,
+.order-info a:focus-visible {
+  color: var(--color-primary-hover);
 }
 
 /* ── O MNIE ── */
@@ -781,6 +839,17 @@ footer p {
   #o-mnie,
   #kontakt {
     padding-inline: var(--space-4);
+  }
+
+  .gallery-tabs {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery-tab {
+    justify-content: center;
+    text-align: center;
   }
 
   .swiper-btn {
