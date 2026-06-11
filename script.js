@@ -190,8 +190,13 @@ function updateVisibleSwiper(panelId) {
 function activateGalleryTab(tab) {
   const targetId = tab.getAttribute('aria-controls');
   const targetPanel = document.getElementById(targetId);
-
   if (!targetPanel) return;
+
+  const currentTab = document.querySelector('.gallery-tab[aria-selected="true"]');
+  const currentPanelId = currentTab?.getAttribute('aria-controls');
+  const currentPanel = currentPanelId ? document.getElementById(currentPanelId) : null;
+
+  if (currentPanel === targetPanel) return;
 
   galleryTabs.forEach((btn) => {
     btn.setAttribute('aria-selected', 'false');
@@ -199,16 +204,48 @@ function activateGalleryTab(tab) {
     btn.classList.remove('is-active');
   });
 
-  galleryPanels.forEach((panel) => {
-    panel.hidden = true;
-  });
-
   tab.setAttribute('aria-selected', 'true');
   tab.setAttribute('tabindex', '0');
   tab.classList.add('is-active');
 
-  targetPanel.hidden = false;
-  updateVisibleSwiper(targetId);
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!currentPanel || reduceMotion) {
+    galleryPanels.forEach((panel) => {
+      panel.hidden = panel !== targetPanel;
+      panel.classList.remove('is-fading-out', 'is-fading-in');
+    });
+
+    targetPanel.hidden = false;
+    targetPanel.classList.add('is-fading-in');
+
+    targetPanel.addEventListener('animationend', () => {
+      targetPanel.classList.remove('is-fading-in');
+    }, { once: true });
+
+    updateVisibleSwiper(targetId);
+    return;
+  }
+
+  currentPanel.classList.remove('is-fading-in');
+  currentPanel.classList.add('is-fading-out');
+
+  currentPanel.addEventListener('animationend', () => {
+    currentPanel.classList.remove('is-fading-out');
+    currentPanel.hidden = true;
+
+    targetPanel.hidden = false;
+    targetPanel.classList.remove('is-fading-out', 'is-fading-in');
+
+    requestAnimationFrame(() => {
+      targetPanel.classList.add('is-fading-in');
+      updateVisibleSwiper(targetId);
+    });
+
+    targetPanel.addEventListener('animationend', () => {
+      targetPanel.classList.remove('is-fading-in');
+    }, { once: true });
+  }, { once: true });
 }
 
 if (galleryTabs.length && galleryPanels.length) {
