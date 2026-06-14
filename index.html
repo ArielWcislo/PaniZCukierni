@@ -57,13 +57,25 @@
 
         <div class="gallery-tabs" role="tablist" aria-label="Rodzaj oferty">
           <button
-            id="tab-podstawowa"
             class="gallery-tab is-active"
+            id="tab-special"
             type="button"
             role="tab"
             aria-selected="true"
-            aria-controls="panel-podstawowa"
+            aria-controls="panel-special"
             tabindex="0"
+          >
+            Specjał miesiąca
+          </button>
+
+          <button
+            id="tab-podstawowa"
+            class="gallery-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-podstawowa"
+            tabindex="-1"
           >
             Podstawowa
           </button>
@@ -82,11 +94,32 @@
         </div>
       </div>
 
-      <div
+      <section
+        id="panel-special"
+        class="gallery-panel"
+        role="tabpanel"
+        aria-labelledby="tab-special"
+      >
+        <div class="gallery-swiper-wrap">
+          <div class="swiper gallery-swiper gallery-swiper-special">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="./images/specjal-1.jpg" alt="Specjał miesiąca 1" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./images/specjal-2.jpg" alt="Specjał miesiąca 2" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
         id="panel-podstawowa"
         class="gallery-panel"
         role="tabpanel"
         aria-labelledby="tab-podstawowa"
+        hidden
       >
         <div class="gallery-swiper-wrap">
           <button
@@ -115,9 +148,9 @@
             </svg>
           </button>
         </div>
-      </div>
+      </section>
 
-      <div
+      <section
         id="panel-monodesery"
         class="gallery-panel"
         role="tabpanel"
@@ -151,27 +184,28 @@
             </svg>
           </button>
         </div>
-      </div>
+      </section>
+
       <div class="order-cta fade-in">
-      <div class="order-info">
-        Zamówienia przyjmuję przez
-        <a
-          href="https://instagram.com/panizcukierni"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Instagram
-        </a>
-        i
-        <a
-          href="https://facebook.com/p/Pani-z-cukierni-61576046405911/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Facebook
-        </a>.
+        <div class="order-info">
+          Zamówienia przyjmuję przez
+          <a
+            href="https://instagram.com/panizcukierni"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram
+          </a>
+          i
+          <a
+            href="https://facebook.com/p/Pani-z-cukierni-61576046405911/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Facebook
+          </a>.
+        </div>
       </div>
-</div>
     </section>
 
     <!-- O MNIE -->

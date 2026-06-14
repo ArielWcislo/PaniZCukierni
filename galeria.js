@@ -21,3 +21,8 @@ const MONODESERY = [
   { src: './assets/monodesery_07.png', caption: '' },
   { src: './assets/monodesery_08.png', caption: '' },
 ];
+
+const SPECJAL_MIESIACA = [
+  { src: './assets/specjal_01.png', caption: '' },
+  { src: './assets/specjal_02.png', caption: '' },
+];

@@ -52,6 +52,8 @@
 
 .gallery-panel {
   margin-top: var(--space-8);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .gallery-panel[hidden] {
@@ -105,6 +107,11 @@
 .swiper.gallery-swiper {
   width: 100%;
   overflow: hidden;
+}
+
+.gallery-swiper-special {
+  max-width: 980px;
+  margin-inline: auto;
 }
 
 .gallery-swiper .swiper-slide {
@@ -266,10 +273,12 @@
   .gallery-tabs {
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
   }
 
   .gallery-tab {
+    display: flex;
+    align-items: center;
     justify-content: center;
     text-align: center;
   }
