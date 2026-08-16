@@ -51,12 +51,13 @@ buildGallery('#gallerySwiperBasic', typeof GALERIA !== 'undefined' ? GALERIA : [
 buildGallery('#gallerySwiperMono', typeof MONODESERY !== 'undefined' ? MONODESERY : []);
 
 // ── SWIPER ──
-function createGallerySwiper(containerSelector, prevSelector, nextSelector, options = {}) {
+function createGallerySwiper(containerSelector, prevSelector, nextSelector, paginationSelector, options = {}) {
   const container = document.querySelector(containerSelector);
   if (!container) return null;
 
   const prevEl = prevSelector ? document.querySelector(prevSelector) : null;
   const nextEl = nextSelector ? document.querySelector(nextSelector) : null;
+  const paginationEl = paginationSelector ? document.querySelector(paginationSelector) : null;
 
   const config = {
     slidesPerView: 1.2,
@@ -84,36 +85,38 @@ function createGallerySwiper(containerSelector, prevSelector, nextSelector, opti
     };
   }
 
+  if (paginationEl) {
+    config.pagination = {
+      el: paginationEl,
+      clickable: true,
+      renderBullet(index, className) {
+        return `<button type="button" class="${className}" aria-label="Zdjęcie ${index + 1}"></button>`;
+      },
+    };
+  }
+
   return new Swiper(containerSelector, config);
 }
 
 const specialSwiper = createGallerySwiper(
   '.gallery-swiper-special',
-  null,
-  null,
-  {
-    loop: false,
-    slidesPerView: 1,
-    spaceBetween: 12,
-    breakpoints: {
-      480: { slidesPerView: 1, spaceBetween: 12 },
-      768: { slidesPerView: 2, spaceBetween: 16 },
-      1024: { slidesPerView: 2, spaceBetween: 16 },
-      1440: { slidesPerView: 2, spaceBetween: 20 },
-    },
-  }
+  '#gallery-special-prev',
+  '#gallery-special-next',
+  '#gallery-special-pagination'
 );
 
 const basicSwiper = createGallerySwiper(
   '#gallerySwiperBasic',
   '#gallery-basic-prev',
-  '#gallery-basic-next'
+  '#gallery-basic-next',
+  '#gallery-basic-pagination'
 );
 
 const monoSwiper = createGallerySwiper(
   '#gallerySwiperMono',
   '#gallery-mono-prev',
-  '#gallery-mono-next'
+  '#gallery-mono-next',
+  '#gallery-mono-pagination'
 );
 
 // ── LIGHTBOX ──
@@ -245,7 +248,7 @@ const galleryPanels = document.querySelectorAll('.gallery-panel');
 function updateVisibleSwiper(panelId) {
   if (panelId === 'panel-special' && specialSwiper) {
     specialSwiper.update();
-    specialSwiper.slideTo(0, 0);
+    specialSwiper.slideToLoop(0, 0, false);
   }
 
   if (panelId === 'panel-podstawowa' && basicSwiper) {

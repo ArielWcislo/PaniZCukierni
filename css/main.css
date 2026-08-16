@@ -336,9 +336,27 @@ footer p {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --nav-offset: 76px;
+  }
+
   .site-nav {
-    padding: var(--space-4);
+    padding: var(--space-2) var(--space-4);
     overflow: visible;
+  }
+
+  .logo-wrap {
+    gap: var(--space-2);
+  }
+
+  .logo-wrap img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo-name {
+    font-size: var(--text-sm);
+    letter-spacing: .12em;
   }
 
   .nav-right {
@@ -350,6 +368,21 @@ footer p {
     display: flex;
     position: relative;
     z-index: 102;
+    width: 32px;
+    height: 32px;
+    gap: 4px;
+  }
+
+  .hamburger span {
+    width: 16px;
+  }
+
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(5.5px) rotate(45deg);
+  }
+
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-5.5px) rotate(-45deg);
   }
 
   .nav-links {

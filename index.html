@@ -101,6 +101,17 @@
         aria-labelledby="tab-special"
       >
         <div class="gallery-swiper-wrap">
+          <button
+            id="gallery-special-prev"
+            class="swiper-btn prev"
+            type="button"
+            aria-label="Poprzednie zdjęcie"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
           <div class="swiper gallery-swiper gallery-swiper-special">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
@@ -111,6 +122,23 @@
               </div>
             </div>
           </div>
+
+          <button
+            id="gallery-special-next"
+            class="swiper-btn next"
+            type="button"
+            aria-label="Następne zdjęcie"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+
+          <div
+            class="gallery-pagination"
+            id="gallery-special-pagination"
+            aria-label="Numer zdjęcia"
+          ></div>
         </div>
       </section>
 
@@ -147,6 +175,12 @@
               <path d="M9 18l6-6-6-6" />
             </svg>
           </button>
+
+          <div
+            class="gallery-pagination"
+            id="gallery-basic-pagination"
+            aria-label="Numer zdjęcia"
+          ></div>
         </div>
       </section>
 
@@ -183,6 +217,12 @@
               <path d="M9 18l6-6-6-6" />
             </svg>
           </button>
+
+          <div
+            class="gallery-pagination"
+            id="gallery-mono-pagination"
+            aria-label="Numer zdjęcia"
+          ></div>
         </div>
       </section>
 

@@ -109,11 +109,6 @@
   overflow: hidden;
 }
 
-.gallery-swiper-special {
-  max-width: 980px;
-  margin-inline: auto;
-}
-
 .gallery-swiper .swiper-slide {
   position: relative;
   height: auto;
@@ -178,6 +173,50 @@
 .swiper-btn.swiper-button-disabled {
   opacity: .3;
   pointer-events: none;
+}
+
+.gallery-pagination {
+  position: static;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+  padding-inline: var(--space-8);
+  width: 100%;
+}
+
+.gallery-pagination.swiper-pagination-lock {
+  display: none;
+}
+
+.gallery-pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: oklch(from var(--color-text) l c h / .22);
+  cursor: pointer;
+  opacity: 1;
+  transition:
+    background var(--transition-interactive),
+    transform var(--transition-interactive);
+}
+
+.gallery-pagination .swiper-pagination-bullet:hover {
+  background: oklch(from var(--color-text) l c h / .45);
+}
+
+.gallery-pagination .swiper-pagination-bullet:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+.gallery-pagination .swiper-pagination-bullet-active {
+  background: var(--color-text);
+  transform: scale(1.25);
 }
 
 /* ── LIGHTBOX ── */
@@ -286,6 +325,10 @@
 @media (max-width: 640px) {
   .gallery-header {
     padding-inline: 10px !important;
+  }
+
+  #galeria {
+    padding-top: calc(clamp(var(--space-12), 8vw, var(--space-24)) + 76px);
   }
 
   .gallery-tabs {
