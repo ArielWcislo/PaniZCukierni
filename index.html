@@ -57,25 +57,26 @@
 
         <div class="gallery-tabs" role="tablist" aria-label="Rodzaj oferty">
           <button
-            class="gallery-tab is-active"
+            class="gallery-tab"
             id="tab-special"
             type="button"
             role="tab"
-            aria-selected="true"
+            aria-selected="false"
             aria-controls="panel-special"
-            tabindex="0"
+            tabindex="-1"
+            hidden
           >
             Specjał miesiąca
           </button>
 
           <button
             id="tab-podstawowa"
-            class="gallery-tab"
+            class="gallery-tab is-active"
             type="button"
             role="tab"
-            aria-selected="false"
+            aria-selected="true"
             aria-controls="panel-podstawowa"
-            tabindex="-1"
+            tabindex="0"
           >
             Podstawowa
           </button>
@@ -99,6 +100,7 @@
         class="gallery-panel"
         role="tabpanel"
         aria-labelledby="tab-special"
+        hidden
       >
         <div class="gallery-swiper-wrap">
           <button
@@ -147,7 +149,6 @@
         class="gallery-panel"
         role="tabpanel"
         aria-labelledby="tab-podstawowa"
-        hidden
       >
         <div class="gallery-swiper-wrap">
           <button

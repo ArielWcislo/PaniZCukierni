@@ -242,8 +242,12 @@ if (specialGalleryEl) {
 }
 
 // ── ZAKŁADKI GALERII ──
-const galleryTabs = document.querySelectorAll('.gallery-tab');
+const galleryTabs = Array.from(document.querySelectorAll('.gallery-tab'));
 const galleryPanels = document.querySelectorAll('.gallery-panel');
+
+function getVisibleGalleryTabs() {
+  return galleryTabs.filter((tab) => !tab.hidden);
+}
 
 function updateVisibleSwiper(panelId) {
   if (panelId === 'panel-special' && specialSwiper) {
@@ -324,34 +328,40 @@ function activateGalleryTab(tab) {
 }
 
 if (galleryTabs.length && galleryPanels.length) {
-  galleryTabs.forEach((tab, index) => {
+  galleryTabs.forEach((tab) => {
     tab.addEventListener('click', () => {
       activateGalleryTab(tab);
     });
 
     tab.addEventListener('keydown', (e) => {
-      let nextIndex = index;
+      const visibleTabs = getVisibleGalleryTabs();
+      const currentIndex = visibleTabs.indexOf(tab);
+      if (currentIndex < 0) return;
+
+      let nextIndex = currentIndex;
 
       if (e.key === 'ArrowRight') {
-        nextIndex = (index + 1) % galleryTabs.length;
+        nextIndex = (currentIndex + 1) % visibleTabs.length;
       } else if (e.key === 'ArrowLeft') {
-        nextIndex = (index - 1 + galleryTabs.length) % galleryTabs.length;
+        nextIndex = (currentIndex - 1 + visibleTabs.length) % visibleTabs.length;
       } else if (e.key === 'Home') {
         nextIndex = 0;
       } else if (e.key === 'End') {
-        nextIndex = galleryTabs.length - 1;
+        nextIndex = visibleTabs.length - 1;
       } else {
         return;
       }
 
       e.preventDefault();
-      galleryTabs[nextIndex].focus();
-      activateGalleryTab(galleryTabs[nextIndex]);
+      visibleTabs[nextIndex].focus();
+      activateGalleryTab(visibleTabs[nextIndex]);
     });
   });
 
+  const visibleTabs = getVisibleGalleryTabs();
   const initialTab =
-    document.querySelector('.gallery-tab[aria-selected="true"]') || galleryTabs[0];
+    visibleTabs.find((tab) => tab.getAttribute('aria-selected') === 'true') ||
+    visibleTabs[0];
 
   if (initialTab) {
     updateVisibleSwiper(initialTab.getAttribute('aria-controls'));

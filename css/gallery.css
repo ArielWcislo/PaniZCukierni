@@ -50,6 +50,10 @@
   box-shadow: var(--shadow-sm);
 }
 
+.gallery-tab[hidden] {
+  display: none;
+}
+
 .gallery-panel {
   margin-top: var(--space-8);
   opacity: 1;
