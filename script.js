@@ -29,21 +29,27 @@ function buildGallery(swiperSelector, items = []) {
   const wrapper = document.querySelector(`${swiperSelector} .swiper-wrapper`);
   if (!wrapper || !Array.isArray(items)) return;
 
-  wrapper.innerHTML = items.map(({ src, caption }, i) => `
-    <div class="swiper-slide" data-full="${src}">
+  const sizes = items.length === 1
+    ? '(max-width: 640px) calc(100vw - 32px), (max-width: 664px) calc(100vw - 64px), 600px'
+    : '(min-width: 1744px) 547px, (min-width: 1440px) calc((100vw - 104px) / 3), (min-width: 1024px) calc((100vw - 88px) / 2.5), (min-width: 768px) calc((100vw - 80px) / 2), (min-width: 641px) calc(100vw - 64px), (min-width: 480px) calc(100vw - 32px), calc((100vw - 44px) / 1.2)';
+
+  wrapper.innerHTML = items.map(({ src, srcset, full, caption }, i) => `
+    <div class="swiper-slide" data-full="${full || src}">
       <img
         src="${src}"
+        ${srcset ? `srcset="${srcset}" sizes="${sizes}"` : ''}
         alt="${caption || ''}"
-        width="600"
-        height="800"
-        loading="${i < 3 ? 'eager' : 'lazy'}"
+        width="1080"
+        height="1350"
+        loading="${i === 0 ? 'eager' : 'lazy'}"
+        decoding="async"
       />
     </div>
   `).join('');
 }
 
 const galleryCategories = typeof KATEGORIE_GALERII !== 'undefined' ? KATEGORIE_GALERII : [];
-galleryCategories.forEach(({ id, items }) => buildGallery(`#gallery-${id}`, items));
+const initializedGalleries = new Set();
 
 function createGallerySwiper(containerSelector, prevSelector, nextSelector, paginationSelector, options = {}) {
   const container = document.querySelector(containerSelector);
@@ -61,8 +67,6 @@ function createGallerySwiper(containerSelector, prevSelector, nextSelector, pagi
     grabCursor: true,
     touchEventsTarget: 'container',
     passiveListeners: true,
-    observer: true,
-    observeParents: true,
     breakpoints: {
       480: { slidesPerView: 1, spaceBetween: 12 },
       768: { slidesPerView: 2, spaceBetween: 16 },
@@ -94,15 +98,25 @@ function createGallerySwiper(containerSelector, prevSelector, nextSelector, pagi
 }
 
 const gallerySwipers = new Map();
-galleryCategories.forEach(({ id, items }) => {
-  gallerySwipers.set(`panel-${id}`, createGallerySwiper(
-    `#gallery-${id}`,
-    `#gallery-${id}-prev`,
-    `#gallery-${id}-next`,
-    `#gallery-${id}-pagination`,
-    items.length === 1 ? { slidesPerView: 1, breakpoints: {}, grabCursor: false } : {}
-  ));
-});
+
+function initializeGallery(panelId) {
+  if (initializedGalleries.has(panelId)) return;
+  const category = galleryCategories.find(({ id }) => `panel-${id}` === panelId);
+  if (!category) return;
+
+  const { id, items } = category;
+  buildGallery(`#gallery-${id}`, items);
+  bindGalleryLightbox(`gallery-${id}`);
+  if (items.length > 1) {
+    gallerySwipers.set(panelId, createGallerySwiper(
+      `#gallery-${id}`,
+      `#gallery-${id}-prev`,
+      `#gallery-${id}-next`,
+      `#gallery-${id}-pagination`
+    ));
+  }
+  initializedGalleries.add(panelId);
+}
 
 // Lightbox
 function openLightbox(src, alt) {
@@ -153,26 +167,9 @@ function bindGalleryLightbox(galleryId) {
   const galleryEl = document.getElementById(galleryId);
   if (!galleryEl) return;
 
-  let dragStartX = 0;
-  let dragStartY = 0;
-
-  galleryEl.addEventListener('mousedown', (e) => {
-    dragStartX = e.clientX;
-    dragStartY = e.clientY;
-  });
-
-  galleryEl.addEventListener('touchstart', (e) => {
-    const touch = e.touches[0];
-    if (!touch) return;
-    dragStartX = touch.clientX;
-    dragStartY = touch.clientY;
-  }, { passive: true });
-
   galleryEl.addEventListener('click', (e) => {
-    const moveX = Math.abs((e.clientX || 0) - dragStartX);
-    const moveY = Math.abs((e.clientY || 0) - dragStartY);
-
-    if (moveX > 6 || moveY > 6) return;
+    // Swiper distinguishes a tap from dragging for both mouse and touch input.
+    if (galleryEl.swiper && !galleryEl.swiper.allowClick) return;
 
     const slide = e.target.closest('.swiper-slide');
     if (!slide) return;
@@ -186,8 +183,6 @@ function bindGalleryLightbox(galleryId) {
     }
   });
 }
-
-galleryCategories.forEach(({ id }) => bindGalleryLightbox(`gallery-${id}`));
 
 // Zakładki galerii
 const galleryTabs = Array.from(document.querySelectorAll('.gallery-tab'));
@@ -218,6 +213,7 @@ function activateGalleryTab(tab) {
     panel.hidden = panel !== targetPanel;
     panel.classList.remove('is-fading-out', 'is-fading-in');
   });
+  initializeGallery(targetId);
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     targetPanel.classList.add('is-fading-in');
     targetPanel.addEventListener('animationend', () => targetPanel.classList.remove('is-fading-in'), { once: true });
@@ -262,6 +258,7 @@ if (galleryTabs.length && galleryPanels.length) {
     visibleTabs[0];
 
   if (initialTab) {
+    initializeGallery(initialTab.getAttribute('aria-controls'));
     updateVisibleSwiper(initialTab.getAttribute('aria-controls'));
   }
 }

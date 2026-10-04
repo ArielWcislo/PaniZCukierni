@@ -78,6 +78,15 @@
   max-width: 600px;
 }
 
+.gallery-panel-single .swiper-wrapper {
+  display: block;
+}
+
+.gallery-panel-single .swiper-slide {
+  width: 100%;
+  cursor: zoom-in;
+}
+
 .gallery-description {
   max-width: 70ch;
   margin: 0 auto var(--space-6);
@@ -136,7 +145,7 @@
   margin-inline: auto;
 }
 
-.swiper.gallery-swiper {
+.gallery-swiper {
   width: 100%;
   overflow: hidden;
 }
