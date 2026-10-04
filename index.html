@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pani z cukierni</title>
-  <meta name="description" content="Domowe wypieki na zamówienie — cookies, serniki, cynamonki i więcej." />
+  <meta name="description" content="Domowe wypieki na zamówienie — serniki, ciasta i torty, deserki w kubeczkach i słodkości na dwa kęsy. Sprawdź też comiesięczny pop-up." />
   <meta property="og:title" content="Pani z Cukierni" />
-  <meta property="og:description" content="Domowe wypieki na zamówienie — cookies, serniki, cynamonki i więcej." />
-  <meta property="og:image" content="./assets/hero_bg.jpg" />
+  <meta property="og:description" content="Domowe wypieki na zamówienie — serniki, ciasta i torty, deserki w kubeczkach i słodkości na dwa kęsy. Sprawdź też comiesięczny pop-up." />
+  <meta property="og:image" content="./assets/pop_up.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,178 +52,84 @@
     <!-- GALERIA -->
     <section id="galeria">
       <div class="gallery-header fade-in">
-        <h2 class="section-title">Oferta</h2>
-        <hr class="section-divider" aria-hidden="true" />
+        <div class="gallery-heading">
+          <h2 class="section-title">Oferta</h2>
+          <hr class="section-divider" aria-hidden="true" />
+        </div>
 
         <div class="gallery-tabs" role="tablist" aria-label="Rodzaj oferty">
-          <button
-            class="gallery-tab"
-            id="tab-special"
-            type="button"
-            role="tab"
-            aria-selected="false"
-            aria-controls="panel-special"
-            tabindex="-1"
-            hidden
-          >
-            Specjał miesiąca
-          </button>
-
-          <button
-            id="tab-podstawowa"
-            class="gallery-tab is-active"
-            type="button"
-            role="tab"
-            aria-selected="true"
-            aria-controls="panel-podstawowa"
-            tabindex="0"
-          >
-            Podstawowa
-          </button>
-
-          <button
-            id="tab-monodesery"
-            class="gallery-tab"
-            type="button"
-            role="tab"
-            aria-selected="false"
-            aria-controls="panel-monodesery"
-            tabindex="-1"
-          >
-            Monodesery
-          </button>
+          <button id="tab-pop-up" class="gallery-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="panel-pop-up" tabindex="0">Pop up</button>
+          <button id="tab-serniki" class="gallery-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-serniki" tabindex="-1">Serniki</button>
+          <button id="tab-ciasta-torty" class="gallery-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-ciasta-torty" tabindex="-1">Ciasta i torty</button>
+          <button id="tab-deserki" class="gallery-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-deserki" tabindex="-1">Deserki w kubeczkach</button>
+          <button id="tab-dwa-kesy" class="gallery-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-dwa-kesy" tabindex="-1">Słodkości na dwa kęsy</button>
+          <button id="tab-jak-zamawiac" class="gallery-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-jak-zamawiac" tabindex="-1">Jak zamawiać</button>
         </div>
       </div>
 
-      <section
-        id="panel-special"
-        class="gallery-panel"
-        role="tabpanel"
-        aria-labelledby="tab-special"
-        hidden
-      >
+      <section id="panel-pop-up" class="gallery-panel gallery-panel-single" role="tabpanel" aria-labelledby="tab-pop-up" tabindex="0">
         <div class="gallery-swiper-wrap">
-          <button
-            id="gallery-special-prev"
-            class="swiper-btn prev"
-            type="button"
-            aria-label="Poprzednie zdjęcie"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-
-          <div class="swiper gallery-swiper gallery-swiper-special">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <img src="./images/specjal-1.jpg" alt="Specjał miesiąca 1" />
-              </div>
-              <div class="swiper-slide">
-                <img src="./images/specjal-2.jpg" alt="Specjał miesiąca 2" />
-              </div>
-            </div>
+          <button id="gallery-pop-up-prev" class="swiper-btn prev" type="button" aria-label="Poprzednie zdjęcie" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg></button>
+          <div id="gallery-pop-up" class="swiper gallery-swiper">
+            <div class="swiper-wrapper"></div>
           </div>
-
-          <button
-            id="gallery-special-next"
-            class="swiper-btn next"
-            type="button"
-            aria-label="Następne zdjęcie"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
-
-          <div
-            class="gallery-pagination"
-            id="gallery-special-pagination"
-            aria-label="Numer zdjęcia"
-          ></div>
+          <button id="gallery-pop-up-next" class="swiper-btn next" type="button" aria-label="Następne zdjęcie" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg></button>
+          <div class="gallery-pagination" id="gallery-pop-up-pagination" aria-label="Numer zdjęcia" hidden></div>
         </div>
       </section>
 
-      <section
-        id="panel-podstawowa"
-        class="gallery-panel"
-        role="tabpanel"
-        aria-labelledby="tab-podstawowa"
-      >
+      <section id="panel-serniki" class="gallery-panel" role="tabpanel" aria-labelledby="tab-serniki" tabindex="0" hidden>
         <div class="gallery-swiper-wrap">
-          <button
-            id="gallery-basic-prev"
-            class="swiper-btn prev"
-            type="button"
-            aria-label="Poprzednie zdjęcie"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-
-          <div id="gallerySwiperBasic" class="swiper gallery-swiper">
+          <button id="gallery-serniki-prev" class="swiper-btn prev" type="button" aria-label="Poprzednie zdjęcie"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg></button>
+          <div id="gallery-serniki" class="swiper gallery-swiper">
             <div class="swiper-wrapper"></div>
           </div>
-
-          <button
-            id="gallery-basic-next"
-            class="swiper-btn next"
-            type="button"
-            aria-label="Następne zdjęcie"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
-
-          <div
-            class="gallery-pagination"
-            id="gallery-basic-pagination"
-            aria-label="Numer zdjęcia"
-          ></div>
+          <button id="gallery-serniki-next" class="swiper-btn next" type="button" aria-label="Następne zdjęcie"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg></button>
+          <div class="gallery-pagination" id="gallery-serniki-pagination" aria-label="Numer zdjęcia"></div>
         </div>
       </section>
 
-      <section
-        id="panel-monodesery"
-        class="gallery-panel"
-        role="tabpanel"
-        aria-labelledby="tab-monodesery"
-        hidden
-      >
+      <section id="panel-ciasta-torty" class="gallery-panel" role="tabpanel" aria-labelledby="tab-ciasta-torty" tabindex="0" hidden>
         <div class="gallery-swiper-wrap">
-          <button
-            id="gallery-mono-prev"
-            class="swiper-btn prev"
-            type="button"
-            aria-label="Poprzednie zdjęcie"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-
-          <div id="gallerySwiperMono" class="swiper gallery-swiper">
+          <button id="gallery-ciasta-torty-prev" class="swiper-btn prev" type="button" aria-label="Poprzednie zdjęcie"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg></button>
+          <div id="gallery-ciasta-torty" class="swiper gallery-swiper">
             <div class="swiper-wrapper"></div>
           </div>
+          <button id="gallery-ciasta-torty-next" class="swiper-btn next" type="button" aria-label="Następne zdjęcie"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg></button>
+          <div class="gallery-pagination" id="gallery-ciasta-torty-pagination" aria-label="Numer zdjęcia"></div>
+        </div>
+      </section>
 
-          <button
-            id="gallery-mono-next"
-            class="swiper-btn next"
-            type="button"
-            aria-label="Następne zdjęcie"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
+      <section id="panel-deserki" class="gallery-panel" role="tabpanel" aria-labelledby="tab-deserki" tabindex="0" hidden>
+        <div class="gallery-swiper-wrap">
+          <button id="gallery-deserki-prev" class="swiper-btn prev" type="button" aria-label="Poprzednie zdjęcie"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg></button>
+          <div id="gallery-deserki" class="swiper gallery-swiper">
+            <div class="swiper-wrapper"></div>
+          </div>
+          <button id="gallery-deserki-next" class="swiper-btn next" type="button" aria-label="Następne zdjęcie"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg></button>
+          <div class="gallery-pagination" id="gallery-deserki-pagination" aria-label="Numer zdjęcia"></div>
+        </div>
+      </section>
 
-          <div
-            class="gallery-pagination"
-            id="gallery-mono-pagination"
-            aria-label="Numer zdjęcia"
-          ></div>
+      <section id="panel-dwa-kesy" class="gallery-panel" role="tabpanel" aria-labelledby="tab-dwa-kesy" tabindex="0" hidden>
+        <div class="gallery-swiper-wrap">
+          <button id="gallery-dwa-kesy-prev" class="swiper-btn prev" type="button" aria-label="Poprzednie zdjęcie"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg></button>
+          <div id="gallery-dwa-kesy" class="swiper gallery-swiper">
+            <div class="swiper-wrapper"></div>
+          </div>
+          <button id="gallery-dwa-kesy-next" class="swiper-btn next" type="button" aria-label="Następne zdjęcie"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg></button>
+          <div class="gallery-pagination" id="gallery-dwa-kesy-pagination" aria-label="Numer zdjęcia"></div>
+        </div>
+      </section>
+
+      <section id="panel-jak-zamawiac" class="gallery-panel gallery-panel-single" role="tabpanel" aria-labelledby="tab-jak-zamawiac" tabindex="0" hidden>
+        <div class="gallery-swiper-wrap">
+          <button id="gallery-jak-zamawiac-prev" class="swiper-btn prev" type="button" aria-label="Poprzednie zdjęcie" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg></button>
+          <div id="gallery-jak-zamawiac" class="swiper gallery-swiper">
+            <div class="swiper-wrapper"></div>
+          </div>
+          <button id="gallery-jak-zamawiac-next" class="swiper-btn next" type="button" aria-label="Następne zdjęcie" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg></button>
+          <div class="gallery-pagination" id="gallery-jak-zamawiac-pagination" aria-label="Numer zdjęcia" hidden></div>
         </div>
       </section>
 

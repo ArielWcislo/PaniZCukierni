@@ -42,18 +42,12 @@ function buildGallery(swiperSelector, items = []) {
   `).join('');
 }
 
-buildGallery(
-  '.gallery-swiper-special',
-  typeof SPECJAL_MIESIACA !== 'undefined' ? SPECJAL_MIESIACA : []
-);
+const galleryCategories = typeof KATEGORIE_GALERII !== 'undefined' ? KATEGORIE_GALERII : [];
+galleryCategories.forEach(({ id, items }) => buildGallery(`#gallery-${id}`, items));
 
-buildGallery('#gallerySwiperBasic', typeof GALERIA !== 'undefined' ? GALERIA : []);
-buildGallery('#gallerySwiperMono', typeof MONODESERY !== 'undefined' ? MONODESERY : []);
-
-// ── SWIPER ──
 function createGallerySwiper(containerSelector, prevSelector, nextSelector, paginationSelector, options = {}) {
   const container = document.querySelector(containerSelector);
-  if (!container) return null;
+  if (!container || typeof Swiper === 'undefined') return null;
 
   const prevEl = prevSelector ? document.querySelector(prevSelector) : null;
   const nextEl = nextSelector ? document.querySelector(nextSelector) : null;
@@ -62,7 +56,8 @@ function createGallerySwiper(containerSelector, prevSelector, nextSelector, pagi
   const config = {
     slidesPerView: 1.2,
     spaceBetween: 12,
-    loop: true,
+    loop: false,
+    watchOverflow: true,
     grabCursor: true,
     touchEventsTarget: 'container',
     passiveListeners: true,
@@ -98,28 +93,18 @@ function createGallerySwiper(containerSelector, prevSelector, nextSelector, pagi
   return new Swiper(containerSelector, config);
 }
 
-const specialSwiper = createGallerySwiper(
-  '.gallery-swiper-special',
-  '#gallery-special-prev',
-  '#gallery-special-next',
-  '#gallery-special-pagination'
-);
+const gallerySwipers = new Map();
+galleryCategories.forEach(({ id, items }) => {
+  gallerySwipers.set(`panel-${id}`, createGallerySwiper(
+    `#gallery-${id}`,
+    `#gallery-${id}-prev`,
+    `#gallery-${id}-next`,
+    `#gallery-${id}-pagination`,
+    items.length === 1 ? { slidesPerView: 1, breakpoints: {}, grabCursor: false } : {}
+  ));
+});
 
-const basicSwiper = createGallerySwiper(
-  '#gallerySwiperBasic',
-  '#gallery-basic-prev',
-  '#gallery-basic-next',
-  '#gallery-basic-pagination'
-);
-
-const monoSwiper = createGallerySwiper(
-  '#gallerySwiperMono',
-  '#gallery-mono-prev',
-  '#gallery-mono-next',
-  '#gallery-mono-pagination'
-);
-
-// ── LIGHTBOX ──
+// Lightbox
 function openLightbox(src, alt) {
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
@@ -202,46 +187,9 @@ function bindGalleryLightbox(galleryId) {
   });
 }
 
-bindGalleryLightbox('gallerySwiperBasic');
-bindGalleryLightbox('gallerySwiperMono');
+galleryCategories.forEach(({ id }) => bindGalleryLightbox(`gallery-${id}`));
 
-const specialGalleryEl = document.querySelector('.gallery-swiper-special');
-if (specialGalleryEl) {
-  let dragStartX = 0;
-  let dragStartY = 0;
-
-  specialGalleryEl.addEventListener('mousedown', (e) => {
-    dragStartX = e.clientX;
-    dragStartY = e.clientY;
-  });
-
-  specialGalleryEl.addEventListener('touchstart', (e) => {
-    const touch = e.touches[0];
-    if (!touch) return;
-    dragStartX = touch.clientX;
-    dragStartY = touch.clientY;
-  }, { passive: true });
-
-  specialGalleryEl.addEventListener('click', (e) => {
-    const moveX = Math.abs((e.clientX || 0) - dragStartX);
-    const moveY = Math.abs((e.clientY || 0) - dragStartY);
-
-    if (moveX > 6 || moveY > 6) return;
-
-    const slide = e.target.closest('.swiper-slide');
-    if (!slide) return;
-
-    const img = slide.querySelector('img');
-    const src = slide.dataset.full || img?.src;
-    const alt = img?.alt || 'Podgląd zdjęcia';
-
-    if (src) {
-      openLightbox(src, alt);
-    }
-  });
-}
-
-// ── ZAKŁADKI GALERII ──
+// Zakładki galerii
 const galleryTabs = Array.from(document.querySelectorAll('.gallery-tab'));
 const galleryPanels = document.querySelectorAll('.gallery-panel');
 
@@ -250,81 +198,31 @@ function getVisibleGalleryTabs() {
 }
 
 function updateVisibleSwiper(panelId) {
-  if (panelId === 'panel-special' && specialSwiper) {
-    specialSwiper.update();
-    specialSwiper.slideToLoop(0, 0, false);
-  }
-
-  if (panelId === 'panel-podstawowa' && basicSwiper) {
-    basicSwiper.update();
-    basicSwiper.slideToLoop(0, 0, false);
-  }
-
-  if (panelId === 'panel-monodesery' && monoSwiper) {
-    monoSwiper.update();
-    monoSwiper.slideToLoop(0, 0, false);
-  }
+  const swiper = gallerySwipers.get(panelId);
+  if (!swiper) return;
+  swiper.update();
+  swiper.slideTo(0, 0, false);
 }
 
 function activateGalleryTab(tab) {
   const targetId = tab.getAttribute('aria-controls');
   const targetPanel = document.getElementById(targetId);
   if (!targetPanel) return;
-
-  const currentTab = document.querySelector('.gallery-tab[aria-selected="true"]');
-  const currentPanelId = currentTab?.getAttribute('aria-controls');
-  const currentPanel = currentPanelId ? document.getElementById(currentPanelId) : null;
-
-  if (currentPanel === targetPanel) return;
-
-  galleryTabs.forEach((btn) => {
-    btn.setAttribute('aria-selected', 'false');
-    btn.setAttribute('tabindex', '-1');
-    btn.classList.remove('is-active');
+  galleryTabs.forEach((button) => {
+    const active = button === tab;
+    button.setAttribute('aria-selected', String(active));
+    button.setAttribute('tabindex', active ? '0' : '-1');
+    button.classList.toggle('is-active', active);
   });
-
-  tab.setAttribute('aria-selected', 'true');
-  tab.setAttribute('tabindex', '0');
-  tab.classList.add('is-active');
-
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (!currentPanel || reduceMotion) {
-    galleryPanels.forEach((panel) => {
-      panel.hidden = panel !== targetPanel;
-      panel.classList.remove('is-fading-out', 'is-fading-in');
-    });
-
-    targetPanel.hidden = false;
+  galleryPanels.forEach((panel) => {
+    panel.hidden = panel !== targetPanel;
+    panel.classList.remove('is-fading-out', 'is-fading-in');
+  });
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     targetPanel.classList.add('is-fading-in');
-
-    targetPanel.addEventListener('animationend', () => {
-      targetPanel.classList.remove('is-fading-in');
-    }, { once: true });
-
-    updateVisibleSwiper(targetId);
-    return;
+    targetPanel.addEventListener('animationend', () => targetPanel.classList.remove('is-fading-in'), { once: true });
   }
-
-  currentPanel.classList.remove('is-fading-in');
-  currentPanel.classList.add('is-fading-out');
-
-  currentPanel.addEventListener('animationend', () => {
-    currentPanel.classList.remove('is-fading-out');
-    currentPanel.hidden = true;
-
-    targetPanel.hidden = false;
-    targetPanel.classList.remove('is-fading-out', 'is-fading-in');
-
-    requestAnimationFrame(() => {
-      targetPanel.classList.add('is-fading-in');
-      updateVisibleSwiper(targetId);
-    });
-
-    targetPanel.addEventListener('animationend', () => {
-      targetPanel.classList.remove('is-fading-in');
-    }, { once: true });
-  }, { once: true });
+  updateVisibleSwiper(targetId);
 }
 
 if (galleryTabs.length && galleryPanels.length) {

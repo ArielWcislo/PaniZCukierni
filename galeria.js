@@ -1,28 +1,89 @@
-const GALERIA = [
-  { src: './assets/01.png', caption: '' },
-  { src: './assets/02.png', caption: '' },
-  { src: './assets/03.png', caption: '' },
-  { src: './assets/04.png', caption: '' },
-  { src: './assets/05.png', caption: '' },
-  { src: './assets/06.png', caption: '' },
-  { src: './assets/07.png', caption: '' },
-  { src: './assets/08.png', caption: '' },
-  { src: './assets/09.png', caption: '' },
-  { src: './assets/10.png', caption: '' },
-];
-
-const MONODESERY = [
-  { src: './assets/monodesery_01.png', caption: '' },
-  { src: './assets/monodesery_02.png', caption: '' },
-  { src: './assets/monodesery_03.png', caption: '' },
-  { src: './assets/monodesery_04.png', caption: '' },
-  { src: './assets/monodesery_05.png', caption: '' },
-  { src: './assets/monodesery_06.png', caption: '' },
-  { src: './assets/monodesery_07.png', caption: '' },
-  { src: './assets/monodesery_08.png', caption: '' },
-];
-
-const SPECJAL_MIESIACA = [
-  { src: './assets/specjal_01.png', caption: '' },
-  { src: './assets/specjal_02.png', caption: '' },
+// Kategorie w kolejności wyświetlania zakładek.
+const KATEGORIE_GALERII = [
+  {
+    "id": "pop-up",
+    "items": [
+      {
+        "src": "./assets/pop_up.png",
+        "caption": "Pop up — informacje"
+      }
+    ]
+  },
+  {
+    "id": "serniki",
+    "items": [
+      {
+        "src": "./assets/serniki_1.png",
+        "caption": "Serniki — oferta, strona 1"
+      },
+      {
+        "src": "./assets/serniki_2.png",
+        "caption": "Serniki — oferta, strona 2"
+      },
+      {
+        "src": "./assets/serniki_3.png",
+        "caption": "Serniki — oferta, strona 3"
+      }
+    ]
+  },
+  {
+    "id": "ciasta-torty",
+    "items": [
+      {
+        "src": "./assets/ciasta_torty_1.png",
+        "caption": "Ciasta i torty — oferta, strona 1"
+      },
+      {
+        "src": "./assets/ciasta_torty_2.png",
+        "caption": "Ciasta i torty — oferta, strona 2"
+      },
+      {
+        "src": "./assets/ciasta_torty_3.png",
+        "caption": "Ciasta i torty — oferta, strona 3"
+      }
+    ]
+  },
+  {
+    "id": "deserki",
+    "items": [
+      {
+        "src": "./assets/deserki_w_kubeczku_1.png",
+        "caption": "Deserki w kubeczkach — oferta, strona 1"
+      },
+      {
+        "src": "./assets/deserki_w_kubeczku_2.png",
+        "caption": "Deserki w kubeczkach — oferta, strona 2"
+      },
+      {
+        "src": "./assets/deserki_w_kubeczku_3.png",
+        "caption": "Deserki w kubeczkach — oferta, strona 3"
+      }
+    ]
+  },
+  {
+    "id": "dwa-kesy",
+    "items": [
+      {
+        "src": "./assets/na_dwa_kesy_1.png",
+        "caption": "Słodkości na dwa kęsy — oferta, strona 1"
+      },
+      {
+        "src": "./assets/na_dwa_kesy_2.png",
+        "caption": "Słodkości na dwa kęsy — oferta, strona 2"
+      },
+      {
+        "src": "./assets/na_dwa_kesy_3.png",
+        "caption": "Słodkości na dwa kęsy — oferta, strona 3"
+      }
+    ]
+  },
+  {
+    "id": "jak-zamawiac",
+    "items": [
+      {
+        "src": "./assets/jak_zamawiac.png",
+        "caption": "Jak zamawiać — informacje"
+      }
+    ]
+  }
 ];
